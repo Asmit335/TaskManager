@@ -1,10 +1,14 @@
 "use client";
+import Link from "next/link";
 import React from "react";
+import { SignOutButton, UserButton, useClerk, useUser } from "@clerk/nextjs";
 
 const Sidebar = () => {
+  const { isSignedIn, user } = useUser();
+  const { signOut } = useClerk();
   return (
     <>
-      <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+      <div className=" m-5 relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
         <div className="mb-2 p-4">
           <h5 className="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-gray-900">
             Task Manager
@@ -13,7 +17,11 @@ const Sidebar = () => {
         <nav className="flex flex-col gap-1 min-w-[240px] p-2 font-sans text-base font-normal text-gray-700">
           <div
             role="button"
-            className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-gray-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none"
+            className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-gray-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 active:border border-gray-900 outline-none"
+            style={{
+              background: "var(--active-bg, #E5E7EB) !important",
+              borderColor: "var(--active-border, #4B5563) !important",
+            }}
           >
             <div className="grid place-items-center mr-4">
               <svg
@@ -30,7 +38,7 @@ const Sidebar = () => {
                 ></path>
               </svg>
             </div>
-            All Tasks
+            <Link href="/">All Tasks</Link>
           </div>
           <div
             role="button"
@@ -51,7 +59,7 @@ const Sidebar = () => {
                 ></path>
               </svg>
             </div>
-            Important!
+            <Link href="/important">Important!</Link>
           </div>
           <div
             role="button"
@@ -72,7 +80,7 @@ const Sidebar = () => {
                 ></path>
               </svg>
             </div>
-            Completed
+            <Link href="/completed">Completed</Link>
             <div className="grid place-items-center ml-auto justify-self-end">
               <div className="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-blue-500/20 text-blue-900 py-1 px-2 text-xs rounded-full">
                 <span className="">14</span>
@@ -98,7 +106,7 @@ const Sidebar = () => {
                 ></path>
               </svg>
             </div>
-            Do it Now
+            <Link href="/incomplete">Do it Now</Link>
           </div>
           <div
             role="button"
@@ -140,7 +148,20 @@ const Sidebar = () => {
                 ></path>
               </svg>
             </div>
-            Log Out
+            {isSignedIn ? (
+              <>
+                <button>
+                  <SignOutButton />
+                </button>
+                <div className="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none   py-1 px-2  ml-24  rounded-full">
+                  <UserButton />
+                </div>
+              </>
+            ) : (
+              <div className="">
+                <Link href="/sign-up">SignUp</Link>
+              </div>
+            )}
           </div>
         </nav>
       </div>

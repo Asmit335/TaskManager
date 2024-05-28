@@ -1,9 +1,10 @@
-import Sidebar from "./components/Sidebar";
-
 export default function Home() {
   return (
-    <>
-      <Sidebar />
-    </>
+    <div className="flex mt-3">
+      <div className="flex-1 flex items-center justify-center">
+        {/* <Tasks /> */}
+        <h1>hello content</h1>
+      </div>
+    </div>
   );
 }
