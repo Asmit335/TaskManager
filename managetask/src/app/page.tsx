@@ -1,4 +1,4 @@
-import CreateContent from "@/components/CreateContent";
+import CreateContent from "@/components/CreateTask";
 
 export default function Home() {
   return (

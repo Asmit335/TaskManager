@@ -3,7 +3,7 @@
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-
+  
 export async function createTask(formData: FormData) {
   const title = formData.get("title") as string;
   const description = formData.get("description") as string;
@@ -22,6 +22,6 @@ export async function createTask(formData: FormData) {
     },
   });
 
-  revalidatePath("/Alltask");
-  redirect("/alltask")
-}
+   revalidatePath("/task");
+  redirect("/task")
+ }

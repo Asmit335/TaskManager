@@ -1,6 +1,8 @@
 import prisma from "@/lib/db";
 import Link from "next/link";
 import React from "react";
+import { FaRegEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 interface Task {
   id: number;
@@ -36,7 +38,7 @@ export default async function Page() {
                     {task.description}
                   </p>
                   <p className="mt-2 text-sm text-gray-700">
-                    Due: {new Date(task.date).toLocaleDateString()}
+                    Date: {new Date(task.date).toLocaleDateString()}
                   </p>
                   <p
                     className={`mt-2 text-sm font-bold ${
@@ -45,6 +47,7 @@ export default async function Page() {
                   >
                     {task.completed ? "Completed" : "Incomplete"}
                   </p>
+
                   <p
                     className={`mt-2 text-sm ${
                       task.important ? "text-yellow-500" : "text-gray-700"
@@ -52,19 +55,27 @@ export default async function Page() {
                   >
                     {task.important ? "Important" : "Not Important"}
                   </p>
+                  <div className="flex text-gray-950 text-xl gap-2 ">
+                    <div>
+                      <FaRegEdit className=" cursor-pointer" />
+                    </div>
+                    <div>
+                      <MdDelete className=" cursor-pointer" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          <div className="group relative bg-gray-50 rounded-lg p-6 shadow-sm">
-            <div className="mt-4 flex justify-between items-start">
+        <div className="mt-6  grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+          <div className="group relative bg-black border-dashed  rounded-lg p-6 shadow-sm">
+            <div className="mt-4 flex justify-center items-center ">
               <div>
                 <Link
                   href="/createtask"
-                  className="text-sm font-bold text-gray-900"
+                  className="text-sm font-bold text-gray-100    "
                 >
                   Add Task
                 </Link>

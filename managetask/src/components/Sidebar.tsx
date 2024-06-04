@@ -100,8 +100,8 @@ const Sidebar = () => {
               Completed
             </Link>
             <div className="grid place-items-center ml-auto justify-self-end">
-              <div className="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-blue-500/20 text-blue-900 py-1 px-2 text-xs rounded-full">
-                <span className="">14</span>
+              <div className="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-blue-100 text-blue-900 py-1 px-2 text-xs rounded-full">
+                {/* <span className="">14</span> */}
               </div>
             </div>
           </div>
