@@ -5,6 +5,8 @@ import Sidebar from "../components/Sidebar";
 import { ClerkProvider } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { Toaster } from "react-hot-toast";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +29,7 @@ export default function RootLayout({
         <body className={inter.className}>
           {/* {userId && <Sidebar />} */}
           <Sidebar />
+          <ToastContainer theme="dark" />
           <main className="flex-1 p-4 m-4">{children}</main>
           <Toaster position="bottom-center" />
         </body>

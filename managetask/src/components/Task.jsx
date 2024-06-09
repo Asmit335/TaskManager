@@ -5,16 +5,12 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
 export default async function Task() {
-  const response = await prisma.task.findMany({
-    where: {
-      completed: true,
-    },
-  });
+  const response = await prisma.task.findMany();
   return (
     <div className="bg-gray-900 py-8">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl font-bold mb-8">
-          Complete Tasks ({response.length})
+          All Tasks ({response.length})
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {response.map((task) => (
@@ -61,6 +57,13 @@ export default async function Task() {
               </div>
             </div>
           ))}
+        </div>
+        <div className="mt-8 flex justify-center">
+          <Link href="/createtask">
+            <div className="text-blue-500 font-semibold hover:underline">
+              Add Task
+            </div>
+          </Link>
         </div>
       </div>
     </div>

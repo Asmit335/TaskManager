@@ -1,17 +1,17 @@
 "use client";
-import { createTask } from "@/action/action";
+import { updateTask } from "@/action/action";
 import React from "react";
 import { toast } from "react-toastify";
 
-export default function CreateTask() {
+export default function UpdateTask() {
   const handletoast = () => {
-    toast.success("Task created Successfull.");
+    toast.success("Task Update Successfull.");
   };
 
   return (
     <>
       <form
-        action={createTask}
+        action={updateTask}
         className="space-y-6 bg-white shadow-md rounded-lg p-6 w-full max-w-lg mx-auto my-8"
       >
         <div className="mb-4">
@@ -92,7 +92,7 @@ export default function CreateTask() {
             onClick={handletoast}
             className="inline-flex items-center px-6 py-3 bg-indigo-600 border border-transparent rounded-lg font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            Create Task
+            Update Task
           </button>
         </div>
       </form>

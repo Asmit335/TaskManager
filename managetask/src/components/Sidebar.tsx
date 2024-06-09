@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { SignOutButton, UserButton, useClerk, useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 
@@ -8,6 +8,11 @@ const Sidebar = () => {
   const { isSignedIn, user } = useUser();
   const { signOut } = useClerk();
   const path = usePathname();
+  const [filter, setFilter] = useState("all");
+
+  const handleFilterChange = (filterType: React.SetStateAction<string>) => {
+    setFilter(filterType);
+  };
 
   return (
     <>
@@ -51,6 +56,7 @@ const Sidebar = () => {
           <div
             role="button"
             className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none"
+            onClick={() => handleFilterChange("important")}
           >
             <div className="grid place-items-center mr-4">
               <svg
@@ -77,6 +83,7 @@ const Sidebar = () => {
           <div
             role="button"
             className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none"
+            onClick={() => handleFilterChange("completed")}
           >
             <div className="grid place-items-center mr-4">
               <svg
@@ -108,6 +115,7 @@ const Sidebar = () => {
           <div
             role="button"
             className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none"
+            onClick={() => handleFilterChange("incomplete")}
           >
             <div className="grid place-items-center mr-4">
               <svg
@@ -134,7 +142,10 @@ const Sidebar = () => {
           <div
             role="button"
             className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none"
-          ></div>
+          >
+            {/* Create Task */}
+          </div>
+
           <div
             role="button"
             className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none"

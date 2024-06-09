@@ -1,14 +1,68 @@
-"use client";
+import prisma from "@/lib/db";
+import Link from "next/link";
 import React from "react";
+import { FaRegEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
-const page = () => {
+export default async function Task() {
+  const response = await prisma.task.findMany({
+    where: {
+      important: true,
+    },
+  });
   return (
-    <>
-       <div className="flex-1 flex items-center justify-center">
-        <h1 className="text-center">This is the important Content</h1>
+    <div className="bg-gray-900 py-8">
+      <div className="container mx-auto px-4">
+        <h2 className="text-2xl font-bold mb-8">
+          Important Tasks ({response.length})
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {response.map((task) => (
+            <div
+              key={task.id}
+              className="bg-white shadow-lg rounded-lg overflow-hidden"
+            >
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {task.title}
+                </h3>
+                <p className="text-gray-600 mb-2">{task.description}</p>
+                <p className="text-gray-600 mb-2">
+                  Date: {new Date(task.date).toLocaleDateString()}
+                </p>
+                <p
+                  className={`text-sm font-semibold ${
+                    task.completed ? "text-green-500" : "text-red-500"
+                  }`}
+                >
+                  {task.completed ? "Completed" : "Incomplete"}
+                </p>
+                <p
+                  className={`text-sm ${
+                    task.important ? "text-yellow-500" : "text-gray-700"
+                  }`}
+                >
+                  {task.important ? "Important" : "Not Important"}
+                </p>
+              </div>
+              <div className="flex justify-end items-center px-4 py-2 bg-gray-100 text-2xl">
+                <Link
+                  href={`/update/${task.id}`}
+                  className="text-gray-600 hover:text-green-500 focus:outline-none"
+                >
+                  <FaRegEdit />
+                </Link>
+                <Link
+                  href={`/delete/${task.id}`}
+                  className="text-gray-600 hover:text-red-500 focus:outline-none ml-2"
+                >
+                  <MdDelete />
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </>
+    </div>
   );
-};
-
-export default page;
+}
