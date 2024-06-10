@@ -25,7 +25,7 @@ const Sidebar = () => {
         <nav className="flex flex-col gap-1 min-w-[240px] p-2 font-sans text-base font-normal text-gray-700">
           <div
             role="button"
-            className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-gray-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 active:border border-gray-900 outline-none"
+            className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80   focus:bg-opacity-80   active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900     outline-none"
             style={{
               background: "var(--active-bg, #E5E7EB) !important",
               borderColor: "var(--active-border, #4B5563) !important",

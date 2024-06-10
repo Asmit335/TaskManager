@@ -8,9 +8,8 @@ export async function createTask(formData: FormData) {
   const title = formData.get("title") as string;
   const description = formData.get("description") as string;
   const date = formData.get("date") as string;
-  const completed = formData.get("completed") === "true";  
-  const important = formData.get("important") === "true";
-  
+  const completed = true  
+  const important = true
 
 
   await prisma.task.create({
@@ -34,6 +33,8 @@ export async function createTask(formData: FormData) {
   const date = formData.get("date") as string;
   const completed = true;
   const important = true;
+  console.log("data",formData,id);
+  
 
 
   await prisma.task.update({
